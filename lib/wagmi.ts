@@ -1,9 +1,9 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { base } from "wagmi/chains";
+import { base, baseSepolia } from "wagmi/chains";
 
 export const config = getDefaultConfig({
-  appName: "Base Roulette Casino",
-  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "",
-  chains: [base],
+  appName: "Minesweeper Battle",
+  projectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID || "",
+  chains: [base, baseSepolia],
   ssr: true,
 });

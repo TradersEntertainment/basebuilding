@@ -1,5 +1,5 @@
 {
-  "name": "base-roulette-casino",
+  "name": "minesweeper-battle",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,21 +7,26 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy:contracts": "hardhat run scripts/deploy.js --network base",
-    "verify:contracts": "hardhat verify --network base"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:base": "hardhat run scripts/deploy.js --network base",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network baseSepolia"
   },
   "dependencies": {
     "next": "14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "framer-motion": "^11.3.0",
     "wagmi": "^2.12.0",
-    "viem": "^2.17.0",
-    "@rainbow-me/rainbowkit": "^2.1.0",
+    "viem": "^2.19.0",
     "@tanstack/react-query": "^5.51.0",
-    "react-confetti": "^6.1.0"
+    "framer-motion": "^11.3.0",
+    "@rainbow-me/rainbowkit": "^2.1.3",
+    "react-confetti": "^6.1.0",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@types/node": "^20.14.0",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
@@ -30,7 +35,8 @@
     "postcss": "^8.4.0",
     "autoprefixer": "^10.4.0",
     "hardhat": "^2.22.0",
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "@openzeppelin/contracts": "^5.0.0"
+    "@openzeppelin/contracts": "^5.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.5"
   }
 }

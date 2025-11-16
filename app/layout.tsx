@@ -8,8 +8,8 @@ import Navbar from "@/components/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Base Roulette Casino",
-  description: "Token-based roulette casino on Base network",
+  title: "Minesweeper Battle",
+  description: "Multiplayer blockchain minesweeper on Base network",
 };
 
 export default function RootLayout({

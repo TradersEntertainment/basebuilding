@@ -1,90 +1,141 @@
-# Base Roulette Casino
+# 💣 Minesweeper Battle
 
-Token-based roulette casino web application on Base network.
+Multiplayer blockchain minesweeper game on Base network. Battle against other players, avoid mines, and win ETH prizes!
 
-## Tech Stack
+## 🎮 Features
+
+- **Multiplayer**: 2-10 players in turn-based battles
+- **Dynamic Scaling**: Grid and mine count adjust based on player count
+- **Round System**: Difficulty increases each round (+20% mines)
+- **Pure ETH**: No custom tokens, just ETH prizes
+- **Smart Contract**: Fully decentralized game logic
+- **Real-time UI**: Live updates with event listening
+
+## 🏗️ Tech Stack
 
 - **Frontend**: Next.js 14 (App Router), TypeScript, TailwindCSS, Framer Motion
-- **Smart Contracts**: Solidity, Hardhat, OpenZeppelin
-- **Web3**: Wagmi, RainbowKit, Viem
+- **Smart Contracts**: Solidity 0.8.20, Hardhat, OpenZeppelin
+- **Web3**: wagmi v2, viem, RainbowKit
+- **Network**: Base (Mainnet & Sepolia)
 
-## Smart Contracts
+## 📦 Installation
 
-### GameToken.sol
-ERC20 token with burn functionality and owner minting capability.
-
-### RouletteGame.sol
-Roulette game with black/red betting system, block hash randomness, and 1% fee.
-
-### SwapFeeCollector.sol
-Uniswap V3 integration for automatic fee collection and buyback with burn mechanism.
-
-## Project Structure
-
-```
-├── contracts/          # Solidity smart contracts
-├── scripts/           # Deployment scripts
-├── app/              # Next.js app router pages
-├── components/       # React components
-├── hooks/           # Custom React hooks
-└── lib/             # Utilities and configurations
-```
-
-## Setup
-
-1. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Copy environment variables:
+## 🔧 Configuration
+
+1. Copy environment variables:
 ```bash
 cp .env.local.example .env.local
 ```
 
-3. Fill in your environment variables in `.env.local`
-
-4. Compile contracts:
-```bash
-npx hardhat compile
+2. Fill in your `.env.local`:
+```env
+NEXT_PUBLIC_CONTRACT_ADDRESS=your_contract_address
+NEXT_PUBLIC_WC_PROJECT_ID=your_walletconnect_project_id
+PRIVATE_KEY=your_private_key
+BASESCAN_API_KEY=your_basescan_api_key
 ```
 
-5. Deploy contracts:
-```bash
-npm run deploy:contracts
-```
+## 🚀 Development
 
-6. Start development server:
 ```bash
 npm run dev
 ```
 
-## Environment Variables
+Open [http://localhost:3000](http://localhost:3000)
 
-```
-NEXT_PUBLIC_GAME_TOKEN_ADDRESS=
-NEXT_PUBLIC_ROULETTE_ADDRESS=
-NEXT_PUBLIC_SWAP_COLLECTOR_ADDRESS=
-NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=
-PRIVATE_KEY=
-BASESCAN_API_KEY=
+## 📝 Smart Contract
+
+### Compile
+```bash
+npm run compile
 ```
 
-## Features
+### Test
+```bash
+npm run test
+```
 
-- **Swap Interface**: Trade ETH for CASINO tokens
-- **Roulette Game**: Bet on black or red with 1.98x payout
-- **Statistics Dashboard**: Track volume, house balance, and player stats
-- **Responsive Design**: Mobile-first with glassmorphism UI
-- **Wallet Integration**: RainbowKit for seamless wallet connections
+### Deploy
 
-## Security
+**Base Sepolia (Testnet)**
+```bash
+npm run deploy:sepolia
+```
 
-- ReentrancyGuard protection
-- Emergency pause mechanism
-- Input validation
-- Rate limiting on frontend
+**Base Mainnet**
+```bash
+npm run deploy:base
+```
 
-## License
+## 🎯 Game Rules
+
+### Grid Scaling
+- 2 players → 5x5 grid, 3 mines
+- 3-4 players → 6x6 grid, 5 mines
+- 5-6 players → 8x8 grid, 8 mines
+- 7-8 players → 10x10 grid, 12 mines
+- 9-10 players → 12x12 grid, 18 mines
+
+### Rounds
+- Each round adds 20% more mines
+- New random seed per round
+- Surviving players advance
+
+### Winning
+- Last player(s) standing split prize pool
+- 99% to winners, 1% platform fee
+- Winners must claim their prize
+
+## 📂 Project Structure
+
+```
+├── contracts/
+│   └── MinesweeperBattle.sol
+├── scripts/
+│   └── deploy.js
+├── test/
+│   └── MinesweeperBattle.test.js
+├── app/
+│   ├── page.tsx
+│   ├── lobby/page.tsx
+│   ├── room/[id]/page.tsx
+│   └── leaderboard/page.tsx
+├── components/
+│   ├── Navbar.tsx
+│   ├── GameBoard.tsx
+│   ├── PlayerList.tsx
+│   ├── TurnTimer.tsx
+│   ├── CreateGameModal.tsx
+│   ├── LobbyList.tsx
+│   ├── WinnerModal.tsx
+│   ├── InviteModal.tsx
+│   └── ChatBox.tsx
+├── hooks/
+│   ├── useGame.ts
+│   ├── useGameState.ts
+│   └── useTurnTimer.ts
+└── lib/
+    ├── wagmi.ts
+    ├── contracts.ts
+    └── utils.ts
+```
+
+## 🔐 Security
+
+- ReentrancyGuard on all payable functions
+- Pausable for emergency stops
+- Input validation (player count, fees, coordinates)
+- Turn timeout enforcement
+- Owner-only admin functions
+
+## 📄 License
 
 MIT
+
+---
+
+Built with ❤️ on Base
