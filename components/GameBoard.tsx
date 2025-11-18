@@ -26,7 +26,8 @@ export default function GameBoard({
 
   useEffect(() => {
     const newRevealed = new Map<string, { revealed: boolean; hitMine: boolean }>();
-    moves.forEach((move: any) => {
+    const movesArray = Array.isArray(moves) ? moves : [];
+    movesArray.forEach((move: any) => {
       const key = `${move.x}-${move.y}`;
       newRevealed.set(key, { revealed: true, hitMine: move.hitMine });
     });
