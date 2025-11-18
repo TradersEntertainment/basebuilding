@@ -87,7 +87,9 @@ export default function LobbyList() {
     );
   }
 
-  if (gameIds.length === 0) {
+  const gameIdsArray = Array.isArray(gameIds) ? gameIds : [];
+
+  if (gameIdsArray.length === 0) {
     return (
       <div className="text-center py-12">
         <p className="text-gray-400 text-lg">No active games</p>
@@ -98,7 +100,7 @@ export default function LobbyList() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {gameIds.map((gameId) => (
+      {gameIdsArray.map((gameId) => (
         <GameCard key={gameId.toString()} gameId={gameId} />
       ))}
     </div>
