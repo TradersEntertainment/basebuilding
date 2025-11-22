@@ -96,7 +96,7 @@ export function useGameState(gameId: bigint | undefined) {
     refetch();
   }, [blockNumber, refetch]);
 
-  if (!gameState || isLoading) {
+  if (!gameState || isLoading || !Array.isArray(gameState)) {
     return { gameState: null, isLoading };
   }
 
@@ -116,7 +116,23 @@ export function useGameState(gameId: bigint | undefined) {
     finished,
     gridSize,
     mineCount,
-  ] = gameState;
+  ] = gameState as [
+    bigint,
+    string,
+    string[],
+    bigint,
+    bigint,
+    number,
+    number,
+    string,
+    bigint,
+    bigint,
+    boolean,
+    boolean,
+    boolean,
+    number,
+    number
+  ];
 
   return {
     gameState: {
@@ -153,11 +169,11 @@ export function usePlayerStatus(gameId: bigint | undefined, playerAddress: strin
     },
   });
 
-  if (!data) {
+  if (!data || !Array.isArray(data)) {
     return { playerStatus: null, isLoading, refetch };
   }
 
-  const [isInGame, isEliminated, hasClaimed] = data;
+  const [isInGame, isEliminated, hasClaimed] = data as [boolean, boolean, boolean];
 
   return {
     playerStatus: { isInGame, isEliminated, hasClaimed } as PlayerStatus,
